@@ -1,16 +1,20 @@
 import express from "express";
 // Após instalação, adicionar o 'type: module' no arquivo package.json
 // Importando as rotas públicas
-import publicRoutes from './routes/public.js';
+import publicRoutes from "./routes/public.js";
 // Importando as rotas privadas
-import privateRoutes from './routes/private.js';
+import privateRoutes from "./routes/private.js";
 //
-import auth from './middlewares/auth.js';
+import cors from "cors";
+
+import auth from "./middlewares/auth.js";
 
 // Criação da variável app para englobar o express()
 const app = express();
 // Fazendo que que o express retorne em json (insonia)
 app.use(express.json());
+app.use(cors()); //Sites que poderão acessa o backend
+// app.use(cors("www.meusite.com.br")) -> Ambiente real
 
 app.use("/", publicRoutes);
 app.use("/", auth, privateRoutes);
