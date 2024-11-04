@@ -20,6 +20,7 @@ app.use(express.json());
 app.use(cors()); //Sites que poderão acessa o backend
 // app.use(cors("www.meusite.com.br")) -> Ambiente real
 
+// App usar as rotas públicas e privadas criadas
 app.use("/", publicRoutes);
 app.use("/", auth, privateRoutes);
 
